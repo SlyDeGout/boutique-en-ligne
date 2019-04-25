@@ -129,19 +129,9 @@ router.post("/review/delete", async (req, res) => {
       "TENTATIVE DE DELETE : reviews.length " + product.reviews.length
     );
     for (var i = 0; i < product.reviews.length; i++) {
-      const test = product.reviews[i]._id.equals(req.query.id);
-      console.log(
-        product.reviews[i]._id +
-          " === " +
-          req.query.id +
-          " renvoie " +
-          test +
-          "    " +
-          product.reviews[i].comment
-      );
       if (product.reviews[i]._id.equals(req.query.id)) {
-        console.log(" --> celui juste au dessus on le retire");
         product.reviews.splice(i, 1);
+        break;
       }
     }
 

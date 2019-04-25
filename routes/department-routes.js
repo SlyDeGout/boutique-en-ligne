@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const Department = require("../models/department-model");
+const Category = require("../models/category-model");
+const Product = require("../models/product-model");
 
 router.post("/department/create", async (req, res) => {
   try {
@@ -35,17 +37,19 @@ router.post("/department/update", async (req, res) => {
 
 router.post("/department/delete", async (req, res) => {
   try {
-    const categories = await Category.find({
-      department: req.query.id
-    });
+    const categories = await Category.find({ department: req.query.id });
     const categoriesId = categories.map(obj => {
       return obj._id;
     });
     await Product.deleteMany({ category: { $in: categoriesId } });
 
     await Category.deleteMany({ department: req.query.id });
-    // const categories = await Category.find({ department: req.query.id });
-    // await categories.remove();
+    // const categories = await Category.find({
+    //   department: req.query.id
+    // });
+    // if (categories) {
+    //   await categories.remove();
+    // }
 
     await Department.deleteOne({ _id: req.query.id });
     // const department = await Department.findById(req.query.id);
