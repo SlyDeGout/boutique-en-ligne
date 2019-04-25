@@ -35,6 +35,6 @@ app.use(productRoutes);
 const reviewRoutes = require("./routes/review-routes");
 app.use(reviewRoutes);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000), () => {
   console.log(`Welcome to "Boutique En Ligne" ! ... server started ...`);
 });
