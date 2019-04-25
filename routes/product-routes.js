@@ -89,7 +89,7 @@ router.post("/product/update", async (req, res) => {
     const product = await Product.findById(req.query.id);
     if (req.body.title) product.title = req.body.title;
     if (req.body.description) product.description = req.body.description;
-    if (req.body.description) product.price = req.body.price;
+    if (req.body.price) product.price = req.body.price;
     if (req.body.category) product.category = req.body.category;
 
     await product.save();
