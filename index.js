@@ -11,9 +11,12 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/boutique-en-ligne", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/boutique-en-ligne",
+  {
+    useNewUrlParser: true
+  }
+);
 
 const Department = require("./models/department-model");
 const Category = require("./models/category-model");
